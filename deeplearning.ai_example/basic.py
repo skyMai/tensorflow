@@ -36,8 +36,8 @@ def cost(logits, labels):
     ### START CODE HERE ###
 
     # Create the placeholders for "logits" (z) and "labels" (y) (approx. 2 lines)
-    z = logits
-    y = labels
+    z = tf.placeholder(tf.float32, name="logits")
+    y = tf.placeholder(tf.float32, name="labels")
 
     # Use the loss function (approx. 1 line)
     cost = tf.nn.sigmoid_cross_entropy_with_logits(logits=z, labels=y)
@@ -46,7 +46,7 @@ def cost(logits, labels):
     sess = tf.Session()
 
     # Run the session (approx. 1 line).
-    cost = sess.run(cost)
+    cost = sess.run(cost, feed_dict={z: logits, y: labels})
 
     # Close the session (approx. 1 line). See method 1 above.
     sess.close()
@@ -89,6 +89,55 @@ if __name__ == "__main__":
     # logits = sigmoid(np.array([0.2, 0.4, 0.7, 0.9]))
     # cost = cost(logits, np.array([0, 0, 1, 1]))
     # print("cost = " + str(cost))
-    x = tf.placeholder(tf.float32, 45)
-    x = tf.placeholder(tf.float32, 536)
-    print(x)
+    # logits = sigmoid(np.array([0.2, 0.4, 0.7, 0.9]))
+    # cost = cost(logits, np.array([0, 0, 1, 1]))
+    # print("cost = " + str(cost))
+
+    indices = [0, 2, -1, 1]
+    depth = 4
+    axis = -1
+    one_hot = tf.one_hot(indices, 3, axis=-1)
+
+    print("**********\n")
+    with tf.Session() as sess:
+        print(sess.run(one_hot))
+
+    a = tf.ones([3,5])
+
+    sess = tf.Session()
+    w = tf.get_variable('w1',[3,5], initializer=tf.contrib.layers.xavier_initializer(seed = 1))
+    # a = sess.run(a)
+    w = sess.run(w)
+    print(w)
+    sess.close()
+
+    tf.get_variable('W1',[23,56], initializer= tf.contrib.layers.xavier_initialzier(seed = 2))
+
+    initializer = tf.zeros_initializer()
+
+    parameters = {
+        'w1':w1,
+        'dla': 3242,
+        'nieg':43
+    }
+    tf.nn.tanh()
+
+    tf.reduce_mean
+
+    tf.nn.softmax_cross_entropy_with_logits(Z2,Y)
+
+    tf.nn.softmax_cross_entropy_with_logits()
+
+_, c = sess.run([optimizer, cost], feed_dict={X: minibatch_X, Y: minibatch_Y})
+
+optimizer = tf.train.GradientDescentOptimizer(learning_rate = 0.1).minimize(cost)
+tf.train.AdamOptimizer()
+
+_, c = sess.run([optimizer, cost],feed_dict = {X:})
+
+    tf.equal(tf.argmax(Z3), tf.argmax(Y))
+
+    tf.truncated_normal
+
+
+    
